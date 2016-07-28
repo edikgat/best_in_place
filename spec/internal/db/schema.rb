@@ -17,6 +17,7 @@ ActiveRecord::Schema.define do
     t.string   "favorite_color"
     t.text     "favorite_books"
     t.datetime "birth_date"
+    t.datetime "birth_datetime"
     t.float    "money"
     t.float    "money_proc"
     t.string   "height"
