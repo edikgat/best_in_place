@@ -614,6 +614,18 @@ describe "JS behaviour", :js => true do
         expect(text).to eq("A's & B's")
       end
     end
+
+    it 'should prevent xss saving correct html string' do
+      @user.save!
+
+      retry_on_timeout do
+        visit user_path(@user)
+
+        bip_text @user, :address, "<script>alert('hi');</script>"
+        wait_for_ajax
+        expect(page).to have_css('#address', text: "<script>alert('hi');</script>")
+      end
+    end
   end
 
   describe "display_with" do
